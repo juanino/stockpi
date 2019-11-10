@@ -13,11 +13,11 @@ from pin_macros import pins_matrix, all_off, all_on, stock_mx
 from adafruit_mcp230xx.mcp23017 import MCP23017
 i2c = busio.I2C(board.SCL, board.SDA)
 
+
 pp = pprint.PrettyPrinter(indent=4)
-
 mcp = MCP23017(i2c)
-
 pins = {}
+
 def setup_pins():
     # setup pins for output to LED
     print("Pin setup")
