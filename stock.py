@@ -8,6 +8,7 @@ from digitalio import Direction
 from time import sleep
 from yahoo_fin.stock_info import get_live_price
 from yahoo_fin.stock_info import get_quote_table
+from pin_macros import pins_matrix, all_off, all_on, stock_mx
 
 from adafruit_mcp230xx.mcp23017 import MCP23017
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -15,26 +16,6 @@ i2c = busio.I2C(board.SCL, board.SDA)
 pp = pprint.PrettyPrinter(indent=4)
 
 mcp = MCP23017(i2c)
-
-pins_matrix = [[5,6],
-          [7,3],
-          [1,2],
-          [4,0]]
-
-all_off = [[0,0],
-           [0,0],
-           [0,0],
-           [0,0]]
-
-all_on = [[1,1],
-          [1,1],
-          [1,1],
-          [1,1]]
-
-stock_mx = [[0,0],
-           [0,0],
-           [0,0],
-           [0,0]]
 
 pins = {}
 def setup_pins():
@@ -107,4 +88,5 @@ while True:
     print(stock_mx)
     flash(3)
     write_mx(stock_mx)
+    print("sleeping until next check of market")
     sleep(900)
