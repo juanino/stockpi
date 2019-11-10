@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# sample
 #print(matrix[3][0])
 import pprint
 import board
