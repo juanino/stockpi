@@ -107,4 +107,4 @@ while True:
     print(stock_mx)
     flash(3)
     write_mx(stock_mx)
-    sleep(10)
+    sleep(900)
