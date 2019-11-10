@@ -70,7 +70,12 @@ def check_stock(stock,row):
         stock_mx[row][0] = 0
         stock_mx[row][1] = 0
         return
-    prev_price = get_quote_table(stock)['Previous Close']
+    try:
+        prev_price = get_quote_table(stock)['Previous Close']
+    except:
+        stock_mx[row][0] = 0
+        stock_mx[row][1] = 0
+    
     if price > prev_price:
         print(stock + " up")
         stock_mx[row][0] = 0
@@ -82,15 +87,24 @@ def check_stock(stock,row):
         stock_mx[row][1] = 0
         return(False)
 
+def flash(times):
+    for x in range(0,times):
+        print("Flashing leds")
+        write_mx(all_on)
+        sleep(.3)
+        write_mx(all_off)
+        sleep(.3)
 
-# main loop
+# --------- main loop -------------
 setup_pins()
-write_mx(all_on)
-sleep(1)
 write_mx(all_off)
-check_stock("fds",0)
-check_stock("^dji",1)
-check_stock("efa",2)
-check_stock("agg",3)
-print(stock_mx)
-write_mx(stock_mx)
+flash(2)
+while True:
+    check_stock("fds",0)
+    check_stock("^dji",1)
+    check_stock("efa",2)
+    check_stock("agg",3)
+    print(stock_mx)
+    flash(3)
+    write_mx(stock_mx)
+    sleep(10)
