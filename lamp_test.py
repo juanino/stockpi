@@ -16,18 +16,20 @@ mcp = MCP23017(i2c)
 matrix = [[5,6],
           [7,3],
           [1,2],
-          [4,0]]
+          [4,0],
+          [8,9],
+          [10,11]]
 
 # setup pins for output to LED
 print("Pin setup")
 pins = {}
-for x in range(0,8):
+for x in range(0,16):
     pins[x]=mcp.get_pin(x)
     pins[x].direction = Direction.OUTPUT
 
 # clear all LEDs to off
 print("Clearing all LEDs")
-for x in range(0,8):
+for x in range(0,16):
     pins[x].value = False
     print(x, pins[x].value)
     sleep(.1)
@@ -48,21 +50,21 @@ for row in matrix:
 print("Clear all LEDs")
 input("press enter:")
 
-for x in range(0,8):
+for x in range(0,16):
     pins[x].value = False
     print(x, pins[x].value)
     sleep(.1)
 
 # manual one by one
 print("One by one test")
-for x in range(0,8):
+for x in range(0,16):
     input("press enter:")
     pins[x].value = True
     print(x, pins[x].value)
     sleep(.1)
 
 print("Clear all LEDs")
-for x in range(0,8):
+for x in range(0,16):
     pins[x].value = False
     print(x, pins[x].value)
     sleep(.1)
@@ -70,11 +72,11 @@ for x in range(0,8):
 print("flash")
 input("press enter:")
 for x in range(0,3):
-    for x in range(0,8):
+    for x in range(0,16):
         pins[x].value = True
         print(x, pins[x].value)
     sleep(.4)
-    for x in range(0,8):
+    for x in range(0,16):
         pins[x].value = False
         print(x, pins[x].value)
     sleep(2)
@@ -85,7 +87,7 @@ sleep(1)
 print("twinkle")
 input("press enter:")
 for x in range(0,3):
-    for x in range(0,8):
+    for x in range(0,16):
         pins[x].value = True
         print(x, pins[x].value)
         sleep(.1)
